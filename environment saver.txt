@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Environment Saver</title>
+
+<style>
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+  font-family:Arial, sans-serif;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  background:#050505;
+  color:white;
+  overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+nav{
+  width:100%;
+  padding:20px 8%;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  position:fixed;
+  top:0;
+  background:rgba(0,0,0,0.6);
+  backdrop-filter:blur(10px);
+  z-index:1000;
+}
+
+nav h1{
+  color:#00ff88;
+  font-size:30px;
+  text-shadow:0 0 15px #00ff88;
+}
+
+nav ul{
+  display:flex;
+  list-style:none;
+  gap:25px;
+}
+
+nav ul li a{
+  color:white;
+  text-decoration:none;
+  transition:0.3s;
+}
+
+nav ul li a:hover{
+  color:#00ff88;
+}
+
+/* HERO */
+
+.hero{
+  min-height:100vh;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:140px 8%;
+  gap:50px;
+  flex-wrap:wrap;
+}
+
+.hero-text{
+  flex:1;
+  min-width:300px;
+}
+
+.hero-text h2{
+  font-size:65px;
+  line-height:1.1;
+  margin-bottom:20px;
+}
+
+.hero-text span{
+  color:#00ff88;
+  text-shadow:0 0 25px #00ff88;
+}
+
+.hero-text p{
+  color:#ccc;
+  line-height:1.7;
+  font-size:18px;
+  margin-bottom:30px;
+}
+
+.buttons{
+  display:flex;
+  gap:20px;
+  flex-wrap:wrap;
+}
+
+.btn{
+  padding:15px 30px;
+  border:none;
+  border-radius:12px;
+  text-decoration:none;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.primary{
+  background:#00ff88;
+  color:black;
+  box-shadow:0 0 20px #00ff88;
+}
+
+.secondary{
+  border:2px solid #00ff88;
+  color:#00ff88;
+}
+
+.primary:hover,
+.secondary:hover{
+  transform:translateY(-5px);
+}
+
+.secondary:hover{
+  background:#00ff88;
+  color:black;
+}
+
+.hero-image{
+  flex:1;
+  min-width:300px;
+}
+
+.hero-image img{
+  width:100%;
+  border-radius:25px;
+  box-shadow:0 0 40px rgba(0,255,136,0.4);
+}
+
+/* SECTION TITLE */
+
+.section-title{
+  text-align:center;
+  font-size:45px;
+  color:#00ff88;
+  margin-bottom:60px;
+}
+
+/* FEATURES */
+
+.features{
+  padding:90px 8%;
+}
+
+.feature-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:30px;
+}
+
+.card{
+  background:rgba(255,255,255,0.05);
+  border-radius:20px;
+  overflow:hidden;
+  backdrop-filter:blur(10px);
+  border:1px solid rgba(255,255,255,0.08);
+  transition:0.3s;
+}
+
+.card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 30px rgba(0,255,136,0.3);
+}
+
+.card img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.card-content{
+  padding:25px;
+}
+
+.card h3{
+  color:#00ff88;
+  margin-bottom:15px;
+}
+
+.card p{
+  color:#ccc;
+  line-height:1.6;
+}
+
+/* STATS */
+
+.stats{
+  padding:90px 8%;
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:25px;
+}
+
+.stat-box{
+  background:#111;
+  padding:40px;
+  border-radius:20px;
+  text-align:center;
+  box-shadow:0 0 20px rgba(0,255,136,0.15);
+}
+
+.stat-box h2{
+  font-size:45px;
+  color:#00ff88;
+  margin-bottom:10px;
+}
+
+/* MISSION BOARD */
+
+.mission-board{
+  padding:90px 8%;
+}
+
+.mission-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
+  gap:30px;
+}
+
+.mission-card{
+  background:rgba(255,255,255,0.05);
+  border-radius:20px;
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.08);
+  transition:0.3s;
+}
+
+.mission-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 0 25px rgba(0,255,136,0.4);
+}
+
+.mission-image img{
+  width:100%;
+  height:220px;
+  object-fit:cover;
+}
+
+.mission-content{
+  padding:25px;
+}
+
+.mission-type{
+  background:#00ff88;
+  color:black;
+  padding:6px 14px;
+  border-radius:30px;
+  font-size:13px;
+  font-weight:bold;
+}
+
+.mission-content h3{
+  margin:20px 0 15px;
+}
+
+.mission-content p{
+  color:#ccc;
+  line-height:1.6;
+}
+
+.mission-info{
+  margin-top:20px;
+}
+
+.mission-info p{
+  margin-bottom:10px;
+}
+
+.mission-buttons{
+  margin-top:25px;
+  display:flex;
+  gap:15px;
+}
+
+.join-btn,
+.upload-btn{
+  flex:1;
+  padding:12px;
+  border:none;
+  border-radius:12px;
+  cursor:pointer;
+  font-weight:bold;
+  transition:0.3s;
+}
+
+.join-btn{
+  background:#00ff88;
+  color:black;
+}
+
+.upload-btn{
+  background:transparent;
+  border:2px solid #00ff88;
+  color:#00ff88;
+}
+
+.join-btn:hover,
+.upload-btn:hover{
+  transform:scale(1.05);
+}
+
+/* LEADERBOARD */
+
+.leaderboard{
+  padding:90px 8%;
+}
+
+.leaderboard-box{
+  max-width:850px;
+  margin:auto;
+  background:#111;
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.leader-row{
+  display:flex;
+  justify-content:space-between;
+  padding:22px 25px;
+  border-bottom:1px solid rgba(255,255,255,0.08);
+}
+
+.leader-row.top{
+  background:#00ff88;
+  color:black;
+  font-weight:bold;
+}
+
+/* UPLOAD */
+
+.upload-section{
+  padding:90px 8%;
+  text-align:center;
+}
+
+.upload-container{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
+  gap:25px;
+}
+
+.upload-box{
+  background:#111;
+  padding:40px;
+  border-radius:20px;
+}
+
+.upload-box h3{
+  color:#00ff88;
+  margin-bottom:20px;
+}
+
+.submit-proof{
+  margin-top:40px;
+  padding:16px 40px;
+  border:none;
+  border-radius:15px;
+  background:#00ff88;
+  color:black;
+  font-size:18px;
+  font-weight:bold;
+  cursor:pointer;
+  box-shadow:0 0 20px #00ff88;
+}
+
+/* FOOTER */
+
+footer{
+  text-align:center;
+  padding:40px;
+  color:#888;
+  margin-top:40px;
+  border-top:1px solid rgba(255,255,255,0.1);
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+  nav{
+    flex-direction:column;
+    gap:15px;
+  }
+
+  nav ul{
+    flex-wrap:wrap;
+    justify-content:center;
+  }
+
+  .hero-text h2{
+    font-size:42px;
+  }
+
+  .leader-row{
+    flex-direction:column;
+    gap:10px;
+  }
+
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+
+<nav>
+
+  <h1>Environment Saver</h1>
+
+  <ul>
+    <li><a href="#">Home</a></li>
+    <li><a href="#">Missions</a></li>
+    <li><a href="#">Leaderboard</a></li>
+    <li><a href="#">Upload</a></li>
+    <li><a href="#">Contact</a></li>
+  </ul>
+
+</nav>
+
+<!-- HERO -->
+
+<section class="hero">
+
+  <div class="hero-text">
+
+    <h2>
+      Save Nature.
+      <span>Save Future.</span>
+    </h2>
+
+    <p>
+      Join eco missions, plant trees, clean streets,
+      recycle waste, upload proof photos, earn eco points,
+      and compete in global environmental leaderboards.
+    </p>
+
+    <div class="buttons">
+      <a href="#" class="btn primary">Plant Tree</a>
+      <a href="#" class="btn secondary">Join Mission</a>
+    </div>
+
+  </div>
+
+  <div class="hero-image">
+    <img src="https://images.unsplash.com/photo-1542601906990-b4d3fb778b09?q=80&w=1200&auto=format&fit=crop">
+  </div>
+
+</section>
+
+<!-- FEATURES -->
+
+<section class="features">
+
+  <h2 class="section-title">Eco Activities</h2>
+
+  <div class="feature-grid">
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-content">
+        <h3>Tree Plantation</h3>
+
+        <p>
+          Plant trees, track growth progress,
+          and earn green rewards.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1618477462146-050d2767eac4?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-content">
+        <h3>Street Cleaning</h3>
+
+        <p>
+          Organize cleanup drives and make
+          your city cleaner.
+        </p>
+      </div>
+    </div>
+
+    <div class="card">
+      <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1200&auto=format&fit=crop">
+
+      <div class="card-content">
+        <h3>Recycling Missions</h3>
+
+        <p>
+          Recycle plastic waste and help
+          reduce pollution.
+        </p>
+      </div>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- STATS -->
+
+<section class="stats">
+
+  <div class="stat-box">
+    <h2>12K+</h2>
+    <p>Trees Planted</p>
+  </div>
+
+  <div class="stat-box">
+    <h2>8K+</h2>
+    <p>Cleanups Completed</p>
+  </div>
+
+  <div class="stat-box">
+    <h2>5K+</h2>
+    <p>Volunteers</p>
+  </div>
+
+  <div class="stat-box">
+    <h2>950+</h2>
+    <p>Recycling Drives</p>
+  </div>
+
+</section>
+
+<!-- MISSION BOARD -->
+
+<section class="mission-board">
+
+  <h2 class="section-title">Community Mission Board</h2>
+
+  <div class="mission-grid">
+
+    <div class="mission-card">
+
+      <div class="mission-image">
+        <img src="https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop">
+      </div>
+
+      <div class="mission-content">
+
+        <span class="mission-type">?? Tree Plantation</span>
+
+        <h3>Plant 500 Trees in Chennai</h3>
+
+        <p>
+          Join volunteers to plant trees
+          across public parks and schools.
+        </p>
+
+        <div class="mission-info">
+          <p>?? Marina Beach Road</p>
+          <p>?? Sunday - 7:00 AM</p>
+          <p>?? Volunteers Needed: 45</p>
+          <p>? +250 Eco Points</p>
+        </div>
+
+        <div class="mission-buttons">
+          <button class="join-btn">Join Mission</button>
+          <button class="upload-btn">Upload Photos</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="mission-card">
+
+      <div class="mission-image">
+        <img src="https://images.unsplash.com/photo-1618477462146-050d2767eac4?q=80&w=1200&auto=format&fit=crop">
+      </div>
+
+      <div class="mission-content">
+
+        <span class="mission-type">?? Street Cleaning</span>
+
+        <h3>Clean City Drive</h3>
+
+        <p>
+          Help remove plastic waste and clean roads
+          with local volunteers.
+        </p>
+
+        <div class="mission-info">
+          <p>?? T Nagar Main Street</p>
+          <p>?? Saturday - 6:30 AM</p>
+          <p>?? Volunteers Needed: 30</p>
+          <p>? +180 Eco Points</p>
+        </div>
+
+        <div class="mission-buttons">
+          <button class="join-btn">Join Mission</button>
+          <button class="upload-btn">Upload Photos</button>
+        </div>
+
+      </div>
+
+    </div>
+
+    <div class="mission-card">
+
+      <div class="mission-image">
+        <img src="https://images.unsplash.com/photo-1532996122724-e3c354a0b15b?q=80&w=1200&auto=format&fit=crop">
+      </div>
+
+      <div class="mission-content">
+
+        <span class="mission-type">? Recycling</span>
+
+        <h3>Plastic Recycling Camp</h3>
+
+        <p>
+          Collect recyclable plastic waste
+          and reduce pollution.
+        </p>
+
+        <div class="mission-info">
+          <p>?? Velachery Community Hall</p>
+          <p>?? Friday - 5:00 PM</p>
+          <p>?? Volunteers Needed: 20</p>
+          <p>? +120 Eco Points</p>
+        </div>
+
+        <div class="mission-buttons">
+          <button class="join-btn">Join Mission</button>
+          <button class="upload-btn">Upload Photos</button>
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+<!-- LEADERBOARD -->
+
+<section class="leaderboard">
+
+  <h2 class="section-title">Top Eco Heroes</h2>
+
+  <div class="leaderboard-box">
+
+    <div class="leader-row top">
+      <span>#1 Arun Kumar</span>
+      <span>?? 12,450 Points</span>
+    </div>
+
+    <div class="leader-row">
+      <span>#2 Green Warriors Team</span>
+      <span>? 10,980 Points</span>
+    </div>
+
+    <div class="leader-row">
+      <span>#3 Priya S</span>
+      <span>?? 9,540 Points</span>
+    </div>
+
+    <div class="leader-row">
+      <span>#4 Eco Friends</span>
+      <span>?? 8,900 Points</span>
+    </div>
+
+  </div>
+
+</section>
+
+<!-- PHOTO UPLOAD -->
+
+<section class="upload-section">
+
+  <h2 class="section-title">Before & After Upload</h2>
+
+  <div class="upload-container">
+
+    <div class="upload-box">
+      <h3>Before Photo</h3>
+      <input type="file">
+    </div>
+
+    <div class="upload-box">
+      <h3>After Photo</h3>
+      <input type="file">
+    </div>
+
+  </div>
+
+  <button class="submit-proof">
+    Submit Verification
+  </button>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer>
+  © 2026 Environment Saver | Save Earth Together ??
+</footer>
+
+</body>
+</html>
